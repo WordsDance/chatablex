@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/bee.png" alt="ChatableX 小蜜蜂智能体" width="128" />
+  <img src="assets/bee.png" alt="chatablex 小蜜蜂智能体" width="128" />
 </p>
 
 <h1 align="center">ChatableX</h1>
