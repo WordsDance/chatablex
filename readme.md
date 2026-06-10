@@ -2,7 +2,7 @@
   <img src="assets/bee.png" alt="chatablex 小蜜蜂智能体" width="128" />
 </p>
 
-<h1 align="center">ChatableX</h1>
+<h1 align="center">chatablex</h1>
 
 <p align="center">
   <strong>小蜜蜂智能体</strong><br/>
