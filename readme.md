@@ -6,7 +6,7 @@
 
 **让一切可对话**
 
-<sub>Agent Loop Native · Harness Native — 每一次工具调用可追踪、可恢复、可纠偏，让每个人都能以工程师级精度解决问题。</sub>
+<font color="#0969da" size="4">Agent Loop Native · Harness Native — 每一次工具调用可追踪、可恢复、可纠偏，让每个人都能以工程师级精度解决问题。</font>
 
 [![macOS](https://img.shields.io/badge/macOS-支持-000000?logo=apple&logoColor=white)]()
 [![Windows](https://img.shields.io/badge/Windows-支持-0078D4?logo=windows&logoColor=white)]()
