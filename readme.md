@@ -14,6 +14,10 @@
 
 </div>
 
+<p align="center">
+  <img src="assets/chatablex-app.png" alt="ChatableX 主界面：工具商店、对话交互、Agent Brain 推理追踪" width="920" />
+</p>
+
 **产品定位**
 
 **ChatableX 是 Agent Loop Native 的桌面 Agent 平台** — 以 Harness 工程化体系贯穿 Plan-Act 执行闭环，保障每一次工具调用的可追踪、可恢复与可纠偏。
