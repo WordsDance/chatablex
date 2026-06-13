@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/bee.png" alt="ChatableX 小蜜蜂智能体" width="72" />
+<img src="assets/logo.png" alt="ChatableX 小蜜蜂智能体" width="72" />
 
 <strong>ChatableX · 小蜜蜂智能体</strong>
 
