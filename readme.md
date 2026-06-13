@@ -1,199 +1,291 @@
+<p align="right">
+  <strong>English</strong> | <a href="./README.zh-CN.md">中文</a>
+</p>
+
 <div align="center">
 
-<img src="assets/logo.png" alt="ChatableX 小蜜蜂智能体" width="200" />
+<img src="assets/logo.png" alt="ChatableX Agent" width="200" />
 
-<h1>ChatableX · 小蜜蜂智能体</h1>
+<h1>ChatableX · Agent Platform</h1>
 
-<h3><em>让一切可对话</em></h3>
+<h3><em>Make Everything Conversational</em></h3>
 
-<font color="#0969da" size="3">Agent Loop Native · Harness Native — 每一次工具调用可追踪、可恢复、可纠偏，让每个人都能以工程师级精度解决问题。</font>
+<font color="#0969da" size="3">Agent Loop Native · Harness Native — Every tool call is traceable, recoverable, and correctable, so anyone can solve problems with engineer-grade precision.</font>
 
-[![macOS](https://img.shields.io/badge/macOS-支持-000000?logo=apple&logoColor=white)]()
-[![Windows](https://img.shields.io/badge/Windows-支持-0078D4?logo=windows&logoColor=white)]()
-[![Linux](https://img.shields.io/badge/Linux-支持-FCC624?logo=linux&logoColor=black)]()
+[![macOS](https://img.shields.io/badge/macOS-Supported-000000?logo=apple&logoColor=white)]()
+[![Windows](https://img.shields.io/badge/Windows-Supported-0078D4?logo=windows&logoColor=white)]()
+[![Linux](https://img.shields.io/badge/Linux-Supported-FCC624?logo=linux&logoColor=black)]()
 
 </div>
 
 <p align="center">
-  <img src="assets/chatablex-app.png" alt="ChatableX 主界面：工具商店、对话交互、Agent Brain 推理追踪" width="920" />
+  <img src="assets/chatablex-app.png" alt="ChatableX main interface: tool store, chat, and Agent Brain reasoning trace" width="920" />
 </p>
 
-## 产品定位
+## Product Positioning
 
-**ChatableX 是 Agent Loop Native 的桌面 Agent 平台** — 以 Harness 工程化体系贯穿 Plan-Act 执行闭环，保障每一次工具调用的可追踪、可恢复与可纠偏。<br>
-它让普通用户以工程师级精度驾驭 Tool、Skill 与 AI App：过程全程可视化，异常自动感知与纠偏，失败可重试、可从任意步骤恢复 — 无需编写代码，即可稳定交付复杂任务。
+**ChatableX is an Agent Loop Native desktop Agent platform** — powered by a Harness engineering stack that runs through the full Agent Loop execution cycle, ensuring every tool call is traceable, recoverable, and correctable.<br>
+It lets everyday users wield Tools, Skills, and AI Apps with engineer-grade precision: turn recurring workflows into **stable, callable tools**, then let the Agent orchestrate them through conversation — instead of asking AI to rebuild everything from scratch each time. The entire process is visible, anomalies are detected and corrected automatically, and failures can be retried or resumed from any step.
 
-## 设计哲学：编排者，而非执行者
+## Design Philosophy
 
-当前业界 Agent 普遍将大量工具预载至上下文，或由 RAG 检索后批量注入，再让模型自行选择调用路径 — 工具误选、参数幻觉、执行黑盒，几乎不可避免。<br>
-ChatableX 针对以下三个缺口给出回应：
+> **The premise of "conversation drives everything" is not letting AI do it all — it's letting AI precisely orchestrate stable tools.**
 
-> **工具调用是否准确？执行链路是否可追溯？异常是否可定位？**
+### Conversation-Driven, Not Code-Driven
 
-ChatableX 据此确立分层职责模型：
+The name **ChatableX** comes from **Chat + able + X** — **conversable**. Our belief: **make every application conversational; let conversation drive everything**.
+
+Products like Codex and Cursor are code-centric — even with Vibe Coding trending, the underlying mindset is still "solve problems with Code." ChatableX takes the other path: **express intent in natural language without caring how the underlying code works**.
+
+But conversation-driven interaction alone is not enough. Many agents accept natural language, yet if you hand an entire task to AI to generate from scratch, hallucination, instability, and non-reproducibility are almost inevitable. **ChatableX's answer: give determinism to tools, give uncertainty to Agent orchestration.**
+
+### Stable Tools, Not From-Scratch Generation
+
+Real work is never a pre-designed pipeline — it is **discrete, fragmented, and highly repetitive**.
+
+A large task is essentially a composition of many small steps. ChatableX advocates **layered decomposition**: turn each step into an executable, verifiable, reusable **stable micro-tool**, then assemble them to complete complex work.
+
+Take "add a watermark to an image" — a trivial but frequent operation. If AI writes fresh code every time, even the best model can produce wrong parameters or execution errors. The right approach: **use the best model once to build a verified, callable tool** — build once, reuse forever. Assemble micro-tools, and you reliably complete bigger tasks.
+
+This is why ChatableX provides a **Tool Store** —
+
+- **Only stably executing tools have lasting value** — they should not be discarded when a task ends
+- Much of real work **repeats** — ChatableX helps you crystallize those recurring flows into micro-tools
+- Tool creation can use the **strongest models** to get quality right (spend where it matters)
+- Day-to-day orchestration can use **local quantized small models** to call those tools at minimal token cost
+
+**Ideas are the product; language is the interface — but behind the interface must be verified, stable tools.**
+
+### Deterministic Flows Must Become Tools
+
+The industry often claims "AI can do anything," but in professional domains, AI cannot build everything from zero.
+
+Building a game? You don't write a game engine from scratch — you build on **stable engines** like Unity or Unreal; an engine itself is a collection of many micro-tools. The same applies to e-commerce and ERP: order, inventory, and settlement flows are **fixed and validated through business abstraction** — traditionally carried by ER-driven business systems. AI should not rewrite them every time.
+
+The right path: **turn deterministic business flows into fixed, callable tools and expose APIs to the Agent** — let AI handle understanding and orchestration, not reinvent business logic.
+
+**This is the core meaning of using ChatableX:**
+
+1. Turn your recurring, deterministic workflows into **stable, callable tools**
+2. Hand those tools to ChatableX and let the Agent **orchestrate them through natural language**
+3. The platform uses **Agent Loop** to keep the execution cycle coherent and controllable, and **Harness** to ensure every tool call is traceable, recoverable, and correctable — so your words **route accurately to the right tool**
+
+### Layered Responsibilities: Tool Delivery, Agent Orchestration, Model Reasoning
+
+ChatableX establishes a three-layer responsibility model — conversation drives everything only when each layer does its job:
 
 <table>
 <thead>
 <tr>
-<th align="left" nowrap>层次</th>
-<th align="left" nowrap>职责主体</th>
-<th align="left">质量要求</th>
+<th align="left" nowrap>Layer</th>
+<th align="left" nowrap>Owner</th>
+<th align="left">Quality Bar</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left" nowrap>核心业务</td>
-<td align="left" nowrap>人类 + 稳定工具</td>
-<td align="left">API、脚本及辅助工具的执行结果须经验证与测试</td>
+<td align="left" nowrap>Tool Delivery</td>
+<td align="left" nowrap>Humans + Stable Tools</td>
+<td align="left">APIs, scripts, and helper tools must be verified and tested</td>
 </tr>
 <tr>
-<td align="left" nowrap>编排调度</td>
+<td align="left" nowrap>Agent Orchestration</td>
 <td align="left" nowrap>AI Agent</td>
-<td align="left">解析用户指令，精确路由至对应工具或 MCP 服务</td>
+<td align="left">Parse user intent and route precisely to the right tool or MCP service</td>
 </tr>
 <tr>
-<td align="left" nowrap>探索推理</td>
-<td align="left" nowrap>AI 模型</td>
-<td align="left">处理模糊意图、规划执行步骤、生成结果解释</td>
+<td align="left" nowrap>Model Reasoning</td>
+<td align="left" nowrap>AI Model</td>
+<td align="left">Handle ambiguous intent, plan steps, and explain results</td>
 </tr>
 </tbody>
 </table>
 
-在此模型中，AI 承担编排者角色，而非泛化执行者。<br>
-确定性交付由工具保障，不确定性决策由模型承担 — 这是 ChatableX 的分层职责基线。
+Deterministic delivery is guaranteed by **stable tools**, intent understanding and orchestration by the **Agent**, and fuzzy reasoning and planning by the **model** — each layer has a clear role, and only then can "conversation drives everything" work in practice.
 
-## 工具误选问题与应对机制
+## Tool Misselection and Mitigation
 
-同一业务域内，不同用户可能沉淀数百至数千个定制工具。<br>
-若将全部工具预载至 Agent 上下文，或经 RAG 检索后批量注入模型，工具误选、参数幻觉及调用链失控将成为系统性风险。<br>
-ChatableX 采用会话级工具隔离（Session-scoped Tool Isolation）机制 — 由用户在会话层面声明本次任务的工具集，而非由智能体预先加载全量能力：
+Once tool count grows, **Agent orchestration accuracy** becomes the top challenge — Are tool calls correct? Is the execution chain traceable? Can anomalies be pinpointed?
+
+Within a single business domain, different users may accumulate hundreds to thousands of custom tools.<br>
+If all tools are preloaded into Agent context, or batch-injected via RAG retrieval, tool misselection, parameter hallucination, and runaway call chains become systemic risks.<br>
+ChatableX uses **Session-scoped Tool Isolation** — users declare the tool set for each session at the conversation level, rather than letting the agent preload full capabilities upfront:
 
 <p align="center">
-  <img src="assets/session-tool-isolation.png" alt="会话级工具隔离：工具商店检索筛选 → 本次对话工具栏装配 → 仅注入已选工具至 Agent 执行上下文" width="920" />
+  <img src="assets/session-tool-isolation.png" alt="Session-scoped tool isolation: tool store search → session toolbar assembly → inject only selected tools into Agent context" width="920" />
 </p>
 
-### 设计原则
+### Design Principles
 
-1. **意图驱动（Intent-first）** — 任务意图在用户侧已明确；用户于工具商店检索、筛选并装配，而非依赖 Agent 在全量工具空间中进行概率性选择。
-2. **会话隔离（Session Isolation）** — 系统内置少量通用基础工具；业务工具由用户按会话显式装配，跨会话互不干扰。
-3. **质量门禁（Quality Gate）** — 同一业务域可能存在海量候选工具；进入会话前须通过验证状态、使用反馈及评分排名等机制筛选，降低幻觉风险。
-4. **动态加载（Dynamic Loading）** — 工具与依赖按需挂载、按需卸载；各会话拥有独立运行时，会话结束后自动清理环境残留。
+1. **Intent-first** — Task intent is explicit on the user side; users search, filter, and assemble from the tool store instead of relying on probabilistic selection across the full tool space.
+2. **Session Isolation** — The system ships a small set of general-purpose base tools; business tools are explicitly assembled per session with no cross-session interference.
+3. **Quality Gate** — A domain may have massive candidate tools; before entering a session, tools must pass verification status, usage feedback, and ranking filters to reduce hallucination risk.
+4. **Dynamic Loading** — Tools and dependencies mount and unmount on demand; each session has its own runtime, cleaned up automatically when the session ends.
 
-## 与主流方案对比
+## Comparison with Mainstream Approaches
 
 <table>
 <thead>
 <tr>
-<th align="left" nowrap>维度</th>
+<th align="left" nowrap>Dimension</th>
 <th align="left">Codex / Claude Code / Cursor</th>
-<th align="left">Coze / Dify 等工作流平台</th>
+<th align="left">Coze / Dify Workflow Platforms</th>
 <th align="left">ChatableX</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left" nowrap>目标用户</td>
-<td align="left">开发者</td>
-<td align="left">运营 / 轻量自动化</td>
-<td align="left">业务用户 + 领域专家</td>
+<td align="left" nowrap>Target Users</td>
+<td align="left">Developers</td>
+<td align="left">Ops / light automation</td>
+<td align="left">Business users + domain experts</td>
 </tr>
 <tr>
-<td align="left" nowrap>工具选择</td>
-<td align="left">隐式（项目文件、MCP 自动挂载）</td>
-<td align="left">可视化节点，预定义能力</td>
-<td align="left">显式装配，用户声明会话级工具集</td>
+<td align="left" nowrap>Tool Selection</td>
+<td align="left">Implicit (project files, auto-mounted MCP)</td>
+<td align="left">Visual nodes, predefined capabilities</td>
+<td align="left">Explicit assembly — users declare session-level tool sets</td>
 </tr>
 <tr>
-<td align="left" nowrap>工具规模</td>
-<td align="left">项目级，开发者可控</td>
-<td align="left">平台预置节点</td>
-<td align="left">个人工具库可扩展，会话级裁剪</td>
+<td align="left" nowrap>Tool Scale</td>
+<td align="left">Project-level, developer-controlled</td>
+<td align="left">Platform preset nodes</td>
+<td align="left">Expandable personal library, session-level trimming</td>
 </tr>
 <tr>
-<td align="left" nowrap>调用可追踪</td>
-<td align="left">部分支持 Trace，面向开发者</td>
-<td align="left">流程日志</td>
-<td align="left">Harness Inspector：树状追踪 + 关键操作确认，面向全用户</td>
+<td align="left" nowrap>Call Traceability</td>
+<td align="left">Partial trace support, developer-facing</td>
+<td align="left">Workflow logs</td>
+<td align="left">Harness Inspector: tree trace + critical action confirmation, for all users</td>
 </tr>
 <tr>
-<td align="left" nowrap>工具创作</td>
-<td align="left">代码编写 / MCP 配置</td>
-<td align="left">可视化编排</td>
-<td align="left">对话式零代码构建 + 操作录制蒸馏</td>
+<td align="left" nowrap>Tool Creation</td>
+<td align="left">Code / MCP configuration</td>
+<td align="left">Visual orchestration</td>
+<td align="left">Conversational zero-code building + demonstration distillation</td>
 </tr>
 <tr>
-<td align="left" nowrap>运行环境</td>
-<td align="left">云端容器 / IDE 内嵌</td>
-<td align="left">云端</td>
-<td align="left">本地桌面工作站，数据驻留本机</td>
+<td align="left" nowrap>Runtime</td>
+<td align="left">Cloud containers / IDE-embedded</td>
+<td align="left">Cloud</td>
+<td align="left">Local desktop workstation, data stays on device</td>
 </tr>
 <tr>
-<td align="left" nowrap>核心范式</td>
-<td align="left">AI 辅助代码生成与项目修改</td>
-<td align="left">AI 辅助流程编排</td>
-<td align="left">AI 精准调度已验证工具</td>
+<td align="left" nowrap>Interaction Paradigm</td>
+<td align="left">Code / Vibe Coding — code generation at the core</td>
+<td align="left">Visual workflow orchestration</td>
+<td align="left">Conversation-driven — natural language as the interface</td>
+</tr>
+<tr>
+<td align="left" nowrap>Tool Persistence</td>
+<td align="left">Scattered in project dirs; hard for non-devs to find and reuse</td>
+<td align="left">In-platform workflows; limited cross-user sharing</td>
+<td align="left">Create-to-store, search and drag to reuse, one-click share</td>
+</tr>
+<tr>
+<td align="left" nowrap>Creation Skills</td>
+<td align="left">Manual install of superpowers and extensions; steep learning curve</td>
+<td align="left">Platform preset node capabilities</td>
+<td align="left">Built-in tool-creation Skills — professional-grade tools via conversation</td>
+</tr>
+<tr>
+<td align="left" nowrap>Environment Dependencies</td>
+<td align="left">Developers configure Node.js, package.json, etc. themselves</td>
+<td align="left">Cloud-hosted, invisible to users</td>
+<td align="left">Auto-detect and configure runtime dependencies at install time</td>
+</tr>
+<tr>
+<td align="left" nowrap>Sandbox Isolation</td>
+<td align="left">Mostly cloud containers; local isolation varies by product</td>
+<td align="left">Cloud multi-tenant isolation</td>
+<td align="left">Local desktop session sandbox, isolated from host system</td>
+</tr>
+<tr>
+<td align="left" nowrap>Model Strategy</td>
+<td align="left">Same model for creation and execution; high token cost</td>
+<td align="left">Platform-managed, invisible to users</td>
+<td align="left">Strong models build tools, light models orchestrate — spend where it matters</td>
+</tr>
+<tr>
+<td align="left" nowrap>Core Paradigm</td>
+<td align="left">AI-assisted code generation and project modification</td>
+<td align="left">AI-assisted workflow orchestration</td>
+<td align="left">AI precisely orchestrates verified tools</td>
 </tr>
 </tbody>
 </table>
 
-ChatableX 不以代码生成量为竞争维度，而聚焦于工具调用的准确性、执行过程的透明度及用户侧可控性。
+ChatableX does not compete on volume of code generated. It focuses on **turning recurring flows into stable tools, orchestrating them at minimal cost, with full traceability, recoverability, and correctability**.
 
-## 核心能力
+## Core Capabilities
 
-### 1. 拖拽装配 · 个人工具商店
+### 1. Drag-and-Drop Assembly · Personal Tool Store
 
-左侧扩展栏构成个人工具工作台：支持市场浏览、已安装扩展管理及自研工具归档。<br>
-用户完成工具构建后，可一键纳入本地商店；后续同类任务仅需检索并拖拽至对话区即可完成装配 — 无需修改配置或编写代码。
+The left sidebar is your personal tool workspace: browse the marketplace, manage installed extensions, and archive self-built tools.<br>
+After building a tool through natural language or demonstration recording, it is **automatically added to your local store** — search and drag it into the chat area for the next similar task, or **share it with others in one click**.
 
-### 2. Harness Inspector · 全链路可观测性
+Codex, Cosmos, and similar tools target developers: tools live scattered across project directories or ephemeral sessions. Non-technical users don't know where their work is saved or how to find it again. ChatableX builds **create, persist, reuse, and share** into the platform — **tools are reusable assets, not disposable outputs**.
 
-主流 Agent 产品通常仅提供对话界面，工具调用过程不可见。<br>
-ChatableX 在右侧集成 Harness Inspector，作为 Agent 行为的可观测层：
+### 2. Harness Inspector · Full-Chain Observability
 
-- **推理追踪（Reasoning Trace）** — 实时呈现 Agent 推理过程
-- **工具流水线（Tool Pipeline）** — 以树状结构展示每次调用的输入、输出及状态
-- **环境上下文（Environment Context）** — 展示当前会话已装配工具及文件状态
-- **关键操作确认（Human-in-the-loop）** — 文件写入、付费接口调用、工具发布等高风险操作须经用户授权
+Most Agent products offer only a chat interface — tool calls are invisible.<br>
+ChatableX integrates **Harness Inspector** on the right as the observability layer for Agent behavior:
 
-左侧承载交互结论，右侧承载执行细节 — 形成互补的可读性结构。
+- **Reasoning Trace** — Real-time view of Agent reasoning
+- **Tool Pipeline** — Tree view of each call's inputs, outputs, and status
+- **Environment Context** — Shows assembled tools and file state for the current session
+- **Human-in-the-loop** — High-risk actions (file writes, paid API calls, tool publishing) require user authorization
 
-### 3. 零代码工具构建 · 录制即技能
+The left side carries interaction outcomes; the right side carries execution details — a complementary readability structure.
 
-- **描述即创造（Description-to-Tool）** — 用户以自然语言描述意图，Agent 生成并迭代可执行工具
-- **录制即技能（Demonstration-to-Skill）** — 用户示范操作路径，系统将其蒸馏为可复用技能，以演示替代编码
-- **版本管理（Version Control）** — 工具支持草稿、测试、稳定、归档等生命周期阶段，支持随时回退
+### 3. Zero-Code Tool Building · Built-in Creation Skills
 
-### 4. 会话级依赖隔离
+- **Description-to-Tool** — Describe intent in natural language; the Agent generates and iterates executable tools
+- **Demonstration-to-Skill** — Demonstrate an operation path; the system distills it into a reusable skill, replacing coding with demonstration
+- **Built-in Creation Skills** — Platforms like Codex require users to manually install extensions such as superpowers to build tools efficiently; most users don't understand what Skills are or how to configure them. ChatableX **pre-installs the Skills needed for tool creation** — just converse to produce apps at senior-engineer quality
+- **Strong Models Create, Light Models Orchestrate** — Use the strongest models during tool creation for quality; use local quantized small models for day-to-day Agent orchestration at minimal token cost
+- **Version Control** — Tools support draft, test, stable, and archived lifecycle stages with rollback at any time
 
-各对话会话拥有独立运行时环境。<br>
-跨会话的工具依赖互不干扰，会话空闲后自动清理 — 消除环境残留导致的级联故障。
+### 4. Local Sandbox · Session-Level Environment Isolation
 
-### 5. 计划—执行分离（Plan-then-Execute）
+Each conversation session runs in a **local desktop sandbox** — Agent file I/O, command execution, and tool calls are isolated from the host system; cross-session tool dependencies do not interfere; environments are cleaned up when sessions end.<br>
+Sandboxing is essential for Agent platforms: it ensures execution safety, prevents cross-task contamination, and eliminates cascading failures from environment residue.
 
-Agent 优先生成执行计划，再逐步调用工具；支持失败重试、方案切换及执行中止。<br>
-结合环境反馈，各步骤均可定位、中断与回溯 — 而非单次概率性交付。
+### 5. Out-of-the-Box · Automatic Dependency Configuration
 
-## 典型工作流
+During tool installation and creation, the platform **proactively detects and configures** runtime environments users may need — Node.js, Python, package.json dependencies, system toolchains, and more — without manual "why won't this run?" debugging.<br>
+Users don't need to understand package managers or environment variables; the platform handles dependency setup in the background while users focus on describing what they need.
 
-### 示例：图像水印处理
+### 6. Agent Loop · Plan-then-Execute
 
-1. 于左侧扩展栏检索「图片加水印」工具，拖拽至输入区完成装配
-2. 上传目标图像，以自然语言指定参数（文本内容、字号、位置）
-3. Harness Inspector 实时展示 Agent 的意图解析、参数映射及工具调用过程
-4. 处理完成后，输出文件保存至当前会话；工具保留于商店，供后续复用
+The Agent Loop embeds a Plan-then-Execute strategy: generate an execution plan first, then invoke tools step by step; supports retry on failure, plan switching, and execution abort.<br>
+With environment feedback, every step can be located, interrupted, and rewound — not a one-shot probabilistic delivery.
+
+## Typical Workflow
+
+### Example: Image Watermarking
+
+This example reflects ChatableX's core approach — **micro-tool persistence + conversational orchestration**:
+
+1. **First use**: Describe the need in natural language; the Agent uses a strong model to build "image watermarking" as a **stable tool**, automatically added to the store
+2. **Reuse**: Search the tool in the left sidebar and drag it into the input area — no need to rebuild
+3. Upload the target image and specify parameters in natural language (text, font size, position); the Agent uses a light model to parse intent and **precisely invoke** the verified tool
+4. Harness Inspector shows intent parsing, parameter mapping, and tool calls in real time
+5. When done, output files are saved to the current session; the tool stays in the store permanently for personal or shared reuse
 
 ```
-任务定义 → 商店检索 → 工具装配 → Agent 规划 → 追踪执行 → 用户确认 → 结果交付
+Recurring flow → tool → store search & assembly → describe intent → Agent orchestrates → trace execution → deliver result
 ```
 
-## 适用对象
+## Who It's For
 
-- **业务专家 / 运营人员** — 不具备编程能力，但需构建可复用的自动化工具
-- **中小企业** — 希望将 AI 接入既有 API 与工具链，而非重构整体系统
-- **可观测性敏感用户** — 要求完整可见的推理链路与工具调用过程
-- **工具创作者** — 需要覆盖构建、测试、沉淀与复用的完整生命周期
+- **Business experts / ops teams** — No coding skills, but need reusable automation tools
+- **SMBs** — Want to connect AI to existing APIs and toolchains without rebuilding entire systems
+- **Observability-sensitive users** — Require fully visible reasoning chains and tool call processes
+- **Tool creators** — Need a full lifecycle of build, test, persist, share, and reuse
+- **Zero-code explorers** — Have ideas but can't code; want to deliver apps through conversation, not Code
 
 <p align="center">
-  <strong>ChatableX · 小蜜蜂智能体</strong><br />
+  <strong>ChatableX · Agent Platform</strong><br />
   <sub>Agent Loop Native · Harness Native · macOS · Windows · Linux</sub>
 </p>
